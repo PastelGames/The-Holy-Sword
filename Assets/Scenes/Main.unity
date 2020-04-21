@@ -216,10 +216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   minAffectRate: 1
-  maxAffectRate: 20
+  maxAffectRate: 50
   fillAffectRate: 0
   drainAffectRate: 0
-  minParticleGenerationRate: 0.1
+  minParticleGenerationRate: 0.006
   maxParticleGenerationRate: 0.4
   minParticleSpeed: 1
   maxParticleSpeed: 5
@@ -229,7 +229,7 @@ MonoBehaviour:
   maxWaveFrequency: 3
   minStartingSize: 0.3
   maxStartingSize: 0.8
-  affectRateAcceleration: 5
+  affectRateAcceleration: 60
   plantImages:
   - {fileID: 21300000, guid: 706cf10d3853a9446b94a02580dc25bd, type: 3}
   - {fileID: 21300000, guid: c8c6b4ad2562952419658ae616ea0af0, type: 3}
@@ -400,6 +400,11 @@ PrefabInstance:
       propertyPath: plant
       value: 
       objectReference: {fileID: 105638226}
+    - target: {fileID: 2855326675641277539, guid: 6bf68d1f8c6145a4b885b96760c54386,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bf68d1f8c6145a4b885b96760c54386, type: 3}
 --- !u!114 &401914291 stripped
@@ -1852,12 +1857,17 @@ PrefabInstance:
     - target: {fileID: 7182121653452846777, guid: 96539f6229b355e4bb3b2a93e3246a27,
         type: 3}
       propertyPath: isBot
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7182121653452846777, guid: 96539f6229b355e4bb3b2a93e3246a27,
         type: 3}
       propertyPath: grounded
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182121653452846777, guid: 96539f6229b355e4bb3b2a93e3246a27,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96539f6229b355e4bb3b2a93e3246a27, type: 3}

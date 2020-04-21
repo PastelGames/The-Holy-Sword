@@ -18,6 +18,8 @@ public class PlayerControlsFree : ByTheTale.StateMachine.State
 
         playerControls.anim.ResetTrigger("EndPraying");
 
+        
+
     }
 
     public override void Execute()
@@ -29,13 +31,13 @@ public class PlayerControlsFree : ByTheTale.StateMachine.State
         //if they are a bot
         if (playerControls.isBot)
         {
-            //if they are being attacked then block
+            //if they are being attacked then parry
 
             //are they attacking me
             if (playerControls.otherPlayer.GetComponent<PlayerControls>().IsCurrentState<PlayerControlsAttacking>()
                 //are they close enough
                 && Vector2.Distance(playerControls.otherPlayer.transform.position, playerControls.transform.position)
-                <= playerControls.b_forceBlockRange
+                <= playerControls.b_forceParryRange
                 //are they facing me?
                 && playerControls.AreTheyFacingMe(playerControls.otherPlayer))
             {
@@ -46,8 +48,8 @@ public class PlayerControlsFree : ByTheTale.StateMachine.State
                     playerControls.FlipDirectionFacing();
                 }
 
-                //block
-                playerControls.ChangeState<PlayerControlsBlocking>();
+                //parry
+                playerControls.ChangeState<PlayerControlsParryStance>();
             }
 
             //if enemy affect rate is higher go hit them
@@ -136,15 +138,15 @@ public class PlayerControlsFree : ByTheTale.StateMachine.State
         else //if they are a player
         {
             //begin attack
-            if (Input.GetKeyDown(playerControls.controlsManager.GetKey(playerControls.PlayerID, ControlKeys.Attack)))
+            if (Input.GetKey(playerControls.controlsManager.GetKey(playerControls.PlayerID, ControlKeys.Attack)))
             {
                 playerControls.ChangeState<PlayerControlsAttacking>();
             }
 
-            //begin block
+            //begin parry
             if (Input.GetKey(playerControls.controlsManager.GetKey(playerControls.PlayerID, ControlKeys.Block)))
             {
-                playerControls.ChangeState<PlayerControlsBlocking>();
+                playerControls.ChangeState<PlayerControlsParryStance>();
             }
 
             //begin pray

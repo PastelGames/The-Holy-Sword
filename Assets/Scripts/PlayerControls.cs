@@ -23,7 +23,7 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
     List<Collider2D> hitboxes;
     public GameObject plant;
     public bool isBot;
-    public float b_forceBlockRange;
+    public float b_forceParryRange;
 
     public GameObject otherPlayer;
 
@@ -37,11 +37,12 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
         AddState<PlayerControlsAttackRecovery>();
         AddState<PlayerControlsHit>();
         AddState<PlayerControlsStartup>();
-        AddState<PlayerControlsBlocking>();
+        AddState<PlayerControlsParryStance>();
         AddState<PlayerControlsBeginPray>();
         AddState<PlayerControlsPraying>();
         AddState<PlayerControlsEndPray>();
         AddState<PlayerControlsLocked>();
+        AddState<PlayerControlsParrying>();
 
         SetInitialState<PlayerControlsLocked>();
     }
@@ -257,6 +258,23 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
         }
     }
 
+    public void OnParryStanceAnimationFinished()
+    {
+        if (IsCurrentState<PlayerControlsParryStance>())
+        {
+            anim.SetTrigger("ExitParryStance");
+            ChangeState<PlayerControlsFree>();
+        }
+    }
+
+    public void OnParryingAnimationFinished()
+    {
+        if (IsCurrentState<PlayerControlsParrying>())
+        {
+            ChangeState<PlayerControlsFree>();
+        }
+    }
+
 
     public bool AreTheyFacingMe(GameObject otherPlayer)
     {
@@ -329,7 +347,7 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
 
     IEnumerator Invincible()
     {
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.1f);
         EnableHitboxes();
     }
 

@@ -34,11 +34,10 @@ public class PlayerControlsActive : ByTheTale.StateMachine.State
                 //is it not yourself?
                 && !collider.transform.parent.gameObject.name.Equals(pc.gameObject.name))
             {
-                //given they are blocking
-                if (collider.transform.parent.gameObject.GetComponent<PlayerControls>().IsCurrentState<PlayerControlsBlocking>())
+                //given they are parrying
+                if (collider.transform.parent.gameObject.GetComponent<PlayerControls>().IsCurrentState<PlayerControlsParryStance>())
                 {
-                    //TODO give player feedback so they dont just think they missed
-
+                    
                     //they can still be hit if they are facing the other way
                     if (pc.AreTheyFacingMe(collider.transform.parent.gameObject) == false)
                     {
@@ -47,8 +46,16 @@ public class PlayerControlsActive : ByTheTale.StateMachine.State
                         //ignore any other hitboxes
                         break;
                     }
+
+                    //make the other player parry
+                    collider.transform.parent.gameObject.GetComponent<PlayerControls>().ChangeState<PlayerControlsParrying>();
+
+                    //hit yourself
+                    pc.ChangeState<PlayerControlsHit>();
+
+                    break;
                 }
-                //theyre not blocking
+                //theyre not parrying
                 else
                 {
                     HitEnemyPlayer(collider, pc);

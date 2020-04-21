@@ -118,11 +118,12 @@
     <Compile Include="Assets\Scripts\States\PlayerControlsAttackRecovery.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsAttacking.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsBeginPray.cs" />
-    <Compile Include="Assets\Scripts\States\PlayerControlsBlocking.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsEndPray.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsFree.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsHit.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsLocked.cs" />
+    <Compile Include="Assets\Scripts\States\PlayerControlsParryStance.cs" />
+    <Compile Include="Assets\Scripts\States\PlayerControlsParrying.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsPraying.cs" />
     <Compile Include="Assets\Scripts\States\PlayerControlsStartup.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
