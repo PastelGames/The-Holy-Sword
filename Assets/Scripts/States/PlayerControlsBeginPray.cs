@@ -13,6 +13,12 @@ public class PlayerControlsBeginPray : ByTheTale.StateMachine.State
         //start the pray animation
         playerControls.anim.SetTrigger("BeginPraying");
 
+        //face the plant if not already
+        if (!playerControls.plant.GetComponent<Plant>().AreTheyFacingMe(playerControls.gameObject))
+        {
+            playerControls.FlipDirectionFacing();
+        }
+
         //lock player movement and facing
         playerControls.lockPlayerFacing = true;
         playerControls.lockPlayerMove = true;
@@ -22,5 +28,12 @@ public class PlayerControlsBeginPray : ByTheTale.StateMachine.State
     {
         base.Execute();
         
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        playerControls.anim.ResetTrigger("BeginPraying");
     }
 }

@@ -24,6 +24,7 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
     public GameObject plant;
     public bool isBot;
     public float b_forceParryRange;
+    public GameObject parrySparks;
 
     public GameObject otherPlayer;
 
@@ -273,6 +274,11 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
         {
             ChangeState<PlayerControlsFree>();
         }
+    }
+
+    public void StartParrySparks()
+    {
+        parrySparks.GetComponent<ParticleSystem>().Play();
     }
 
 

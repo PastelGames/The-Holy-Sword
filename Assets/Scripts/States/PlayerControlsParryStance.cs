@@ -17,6 +17,7 @@ public class PlayerControlsParryStance : ByTheTale.StateMachine.State
         //lock player movement
         playerControls.lockPlayerMove = true;
         playerControls.lockPlayerFacing = true;
+
     }
 
     public override void Execute()
@@ -27,6 +28,8 @@ public class PlayerControlsParryStance : ByTheTale.StateMachine.State
     public override void Exit()
     {
         base.Exit();
-        
+
+        //end the sparks
+        playerControls.parrySparks.GetComponent<ParticleSystem>().Stop();
     }
 }

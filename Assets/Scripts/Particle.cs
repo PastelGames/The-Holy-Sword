@@ -21,6 +21,8 @@ public class Particle : MonoBehaviour
         timeNeededToReachDestination = (Vector2.Distance(transform.position, destination)) / speed;
         timeElapsed = 0;
         startingPos = transform.position;
+
+       
     }
 
     // Update is called once per frame
@@ -48,6 +50,9 @@ public class Particle : MonoBehaviour
 
             //make the object smaller over time
             transform.localScale = Vector2.Lerp(startingSize, Vector2.zero, percentage);
+
+            //make the object dissolve over time
+            GetComponent<SpriteRenderer>().material.SetFloat("_Fade", 1 - percentage);
 
         }
         else
