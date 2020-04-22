@@ -227,8 +227,8 @@ MonoBehaviour:
   maxParticleWaveAmplitude: 0.3
   minWaveFrequency: 1
   maxWaveFrequency: 3
-  minStartingSize: 0.3
-  maxStartingSize: 0.8
+  minStartingSize: 0.15
+  maxStartingSize: 0.4
   affectRateAcceleration: 60
   plantImages:
   - {fileID: 21300000, guid: 706cf10d3853a9446b94a02580dc25bd, type: 3}
@@ -747,11 +747,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1421272023}
     m_Modifications:
-    - target: {fileID: 3597666361051338865, guid: 5ed450bce378dc84088804ae75edfc12,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthBar_LR (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 8452622706639403978, guid: 5ed450bce378dc84088804ae75edfc12,
         type: 3}
       propertyPath: m_Color.g
@@ -761,6 +756,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.19215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597666361051338865, guid: 5ed450bce378dc84088804ae75edfc12,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthBar_LR (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3961790507629853686, guid: 5ed450bce378dc84088804ae75edfc12,
         type: 3}
