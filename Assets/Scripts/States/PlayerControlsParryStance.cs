@@ -14,6 +14,12 @@ public class PlayerControlsParryStance : ByTheTale.StateMachine.State
         //start parry animation
         playerControls.anim.SetTrigger("EnterParryStance");
 
+        //if the player is not facing the other player, face them
+        if (!playerControls.otherPlayer.GetComponent<PlayerControls>().AreTheyFacingMe(playerControls.gameObject))
+        {
+            playerControls.FlipDirectionFacing();
+        }
+
         //lock player movement
         playerControls.lockPlayerMove = true;
         playerControls.lockPlayerFacing = true;

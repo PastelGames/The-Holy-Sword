@@ -22,9 +22,13 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
     public bool grounded = false;
     List<Collider2D> hitboxes;
     public GameObject plant;
+
     public bool isBot;
     public float b_forceParryRange;
+
     public GameObject parrySparks;
+    public GameObject hitSparks;
+    public Transform hitSparkLocation;
 
     public GameObject otherPlayer;
 
@@ -80,6 +84,7 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
                 otherPlayer = player;
             }
         }
+
     }
 
     // Update is called once per frame
@@ -279,6 +284,12 @@ public class PlayerControls : ByTheTale.StateMachine.MachineBehaviour
     public void StartParrySparks()
     {
         parrySparks.GetComponent<ParticleSystem>().Play();
+    }
+
+    public void StartHitSparks()
+    {
+        GameObject spawned = Instantiate(hitSparks, hitSparkLocation);
+        spawned.GetComponent<ParticleSystem>().Play();
     }
 
 

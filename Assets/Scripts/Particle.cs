@@ -39,14 +39,14 @@ public class Particle : MonoBehaviour
             //get a vector that is your next destination along path you are moving to
             Vector2 heading = Vector2.Lerp(startingPos, destination, percentage);
 
-                //get the perpindicular vector
-                Vector2 perp = GetPerpindicularVector(heading).normalized;
+            //get the perpindicular vector
+            Vector2 perp = GetPerpindicularVector(heading).normalized;
 
-                //multiply the perpindicular vector by the sin of the distance from the destination
-                Vector2 newPerp = waveAmplitude * perp * Mathf.Sin(percentage * waveFrequency * Mathf.PI * 2);
+            //multiply the perpindicular vector by the sin of the distance from the destination
+            Vector2 newPerp = waveAmplitude * perp * Mathf.Sin(percentage * waveFrequency * Mathf.PI * 2);
 
-                //move toward the destination with wAvEs
-                transform.position = heading + newPerp;
+            //move toward the destination with wAvEs
+            transform.position = heading + newPerp;
 
             //make the object smaller over time
             transform.localScale = Vector2.Lerp(startingSize, Vector2.zero, percentage);

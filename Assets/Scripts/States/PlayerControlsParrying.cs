@@ -12,6 +12,9 @@ public class PlayerControlsParrying: ByTheTale.StateMachine.State
         base.Enter();
         Debug.Log("began parry");
         playerControls.anim.SetTrigger("BeginParry");
+
+        //start hit sparks
+        playerControls.StartHitSparks();
     }
 
     public override void Execute()

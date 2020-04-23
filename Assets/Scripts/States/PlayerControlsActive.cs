@@ -11,9 +11,9 @@ public class PlayerControlsActive : ByTheTale.StateMachine.State
         base.Enter();
     }
 
-    public override void Execute()
+    public override void PhysicsExecute()
     {
-        base.Execute();
+        base.PhysicsExecute();
 
         CheckEnemyPlayerHit(playerControls.gameObject);
     }
@@ -71,16 +71,13 @@ public class PlayerControlsActive : ByTheTale.StateMachine.State
 
     void HitEnemyPlayer(Collider2D collider, PlayerControls pc)
     {
+        
+
         //hit the other player
         collider.transform.parent.GetComponent<PlayerControls>().ChangeState<PlayerControlsHit>();
 
-        //knock back the other player
-        collider.transform.parent.GetComponent<PlayerControls>().rb.velocity =
-            new Vector2(
-                (new Vector2(collider.transform.parent.position.x, 0) //the x of the enemy
-                - new Vector2(pc.transform.position.x, 0)).normalized.x, //minus the x of the player
-                1f) //the up direction
-            * pc.knockbackForce;
+        //make sparks appear
+        playerControls.StartHitSparks();
 
         //make them face you if they are not already
         if (pc.AreTheyFacingMe(collider.transform.parent.gameObject) == false)
@@ -91,7 +88,18 @@ public class PlayerControlsActive : ByTheTale.StateMachine.State
         //is the enemy also attacking? if so, trade
         if (collider.transform.parent.GetComponent<PlayerControls>().IsCurrentState<PlayerControlsActive>())
         {
-            CheckEnemyPlayerHit(collider.transform.parent.gameObject);
+            playerControls.otherPlayer.GetComponent<PlayerControls>().StartHitSparks();
+            playerControls.ChangeState<PlayerControlsHit>();
+        }
+        else //if theyre not attacking then dont knock them back
+        {
+            //knock back the other player
+            collider.transform.parent.GetComponent<PlayerControls>().rb.velocity =
+                new Vector2(
+                    (new Vector2(collider.transform.parent.position.x, 0) //the x of the enemy
+                    - new Vector2(pc.transform.position.x, 0)).normalized.x, //minus the x of the player
+                    1f) //the up direction
+                * pc.knockbackForce;
         }
 
     }
